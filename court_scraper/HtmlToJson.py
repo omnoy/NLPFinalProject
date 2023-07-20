@@ -9,7 +9,7 @@ def parser(results, body) -> dict:
     last_key = False # If parser found 'פסק-דין' last_key = True
 
     for c in body:
-        if ":" == c or key_buffer == "פסק-דין":
+        if ":" == c or key_buffer == "פסק-דין" or key_buffer == "פסק דין":
             c = ""
             if not last_key:
 

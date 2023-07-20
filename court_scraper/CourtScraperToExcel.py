@@ -19,10 +19,12 @@ class CourtScraperToExcel:
                 temp_dict['השופט'] = ",".join(judge_parser(data['body']))
                 temp_dict['התובע'] = plaintiff_name_parser(data['body'])
                 temp_dict['הנתבע'] = ",".join(defendant_name_parser(data))
-                temp_dict['פסק-דין'] = data['פסק-דין']
+                temp_dict['פסק-דין'] = verdict_parser(data['פסק-דין'])
                 docto.add(row=temp_dict)
             except:
                 print(data.keys())
                 print(data['link'])
+        self.docto = docto
 
-        docto.save("CourtVerdicts")
+    def get_df(self):
+        return self.docto

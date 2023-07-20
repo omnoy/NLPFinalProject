@@ -42,3 +42,8 @@ def defendant_name_parser(data: dict):
         raise Exception(f"String not found: {text}")
 
     return [res[0]]
+
+def verdict_parser(text: str):
+    x = "ניתן"
+    res = re.search(x, text)
+    return text[:res.span()[0]]
