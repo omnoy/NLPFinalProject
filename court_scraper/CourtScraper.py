@@ -22,7 +22,8 @@ class CourtScraper(ScraperConfig):
     def search(self, year: int = 2023):
 
         payload = self.payload.copy()
-        payload["Year"] = year
+        payload["document"]["PublishFrom"] = f"{year-1}-12-30T22:00:00.000Z"
+        payload["document"]["PublishTo"] = f"{year}-12-30T22:00:00.000Z"
         response = requests.post(self.urlSearch, json=payload, verify=False)
 
         if response.status_code == 200:
