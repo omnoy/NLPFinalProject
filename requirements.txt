@@ -5,3 +5,5 @@ pandas
 openpyxl
 sklearn
 gensim
+tensorflow
+numpy

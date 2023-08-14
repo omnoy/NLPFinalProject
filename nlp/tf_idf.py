@@ -11,7 +11,11 @@ class court_tfidf:
 
         #self.sentences = self.sentences[:-5]  # Remove 2 last cell from list
 
-        self.count = CountVectorizer()
+        with open("C:\\Users\\dnoy1\\PycharmProjects\\NLPFinalProject\\resources\\heb_stopwords.txt",
+                  encoding='utf8') as file:
+            stopword_list = file.read().split("\n")
+
+        self.count = CountVectorizer(stop_words=stopword_list)
         word_count = self.count.fit_transform(self.sentences)
 
         tfidf_transformer = TfidfTransformer(smooth_idf=True, use_idf=True)
