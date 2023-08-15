@@ -9,13 +9,15 @@ def sentiments_per_judge():
     for index, row in data.iterrows():
         judges = row['השופט']
         for judge in judges.split(","):
-            if judge not in judge_dict.keys():
-                judge_dict[judge] = {}
-                judge_dict[judge]['positive'] = 0
-                judge_dict[judge]['neutral'] = 0
-                judge_dict[judge]['negative'] = 0
+            if judge.startswith(" השופט") or judge.startswith(" השופט") or judge.startswith(
+                    " הנשיא") or judge.startswith(" המשנה"):
+                if judge not in judge_dict.keys():
+                    judge_dict[judge] = {}
+                    judge_dict[judge]['positive'] = 0
+                    judge_dict[judge]['neutral'] = 0
+                    judge_dict[judge]['negative'] = 0
 
-            judge_dict[judge][row['sentiment']] += 1
+                judge_dict[judge][row['sentiment']] += 1
 
     return judge_dict
 
