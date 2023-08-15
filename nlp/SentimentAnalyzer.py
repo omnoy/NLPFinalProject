@@ -12,4 +12,4 @@ class sentiment_analyzer:
 
     def get_analysis(self, text: str):
 
-        return self.sentiment_analysis(text[:511])[0]['label']
+        return self.sentiment_analysis(text[:511])[0]['label'] #maximum length of data is 512
