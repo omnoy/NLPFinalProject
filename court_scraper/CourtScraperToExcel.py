@@ -22,8 +22,7 @@ class CourtScraperToExcel:
                 temp_dict['פסק-דין'] = verdict_parser(data['פסק-דין'])
                 docto.add(row=temp_dict)
             except:
-                print(data.keys())
-                print(data['link'])
+                pass
         self.docto = docto
 
     def get_df(self):

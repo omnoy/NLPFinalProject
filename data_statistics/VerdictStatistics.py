@@ -18,6 +18,8 @@ def num_of_verdicts_per_judge():
 def subject_statistic():
     data = pd.read_excel("C:\\Users\\dnoy1\\PycharmProjects\\NLPFinalProject\\sample\\CourtVerdicts.xlsx")
     subjects = data['tfidf subjects']
+    subjects += data['word2vec subjects']
+    subjects += data['autoencoder subjects']
     subject_count_dict = {}
     for subject in subjects:
         for t in subject.split(","):
