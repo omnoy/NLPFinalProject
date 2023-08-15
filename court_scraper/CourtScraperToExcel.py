@@ -6,11 +6,11 @@ from court_scraper.ParseDocument import *
 class CourtScraperToExcel:
     keys = ["תאריך", "קישור", "השופט", "התובע", "הנתבע", "פסק-דין"]
 
-    def __init__(self):
+    def __init__(self, year: int, limit: int):
         docto = DocToXlsx(keys=self.keys)
         temp_dict = {k: [] for k in self.keys}
         scrap = CourtScraper()
-        datas = scrap.get_by_year(year=2005, limit=50)
+        datas = scrap.get_by_year(year=year, limit=limit)
 
         for data in datas:
             try:
