@@ -3,7 +3,7 @@ from nlp.TfIdfKeywordExtractor import court_tfidf
 from nlp.Word2VecKeywordExtractor import extract_text_keywords
 from nlp.SentimentAnalyzer import sentiment_analyzer
 from nlp.AutoencoderKeywordExtractor import KeyWord_Autoencoder
-docto = CourtScraperToExcel().get_df()
+docto = CourtScraperToExcel(year=2005,limit=50).get_df()
 
 tfidf_subjects = []
 word2vec_subjects = []
