@@ -68,7 +68,7 @@ class KeyWord_Autoencoder():
     def predict(self):
         encoded_words = []
         self.predict_encoder = Model(inputs=self.input_layer, outputs=self.lstm_encoded)
-        encoded_texts = self.predict_encoder.predict(self.X)
+        encoded_texts = self.predict_encoder.predict(self.X, verbose=0)
         for values in encoded_texts:
             indexed_values = [(index, value) for index, value in enumerate(values)]
             sorted_values = sorted(indexed_values, key=lambda x: x[1], reverse=True)

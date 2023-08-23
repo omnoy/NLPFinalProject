@@ -6,7 +6,7 @@ from tensorflow.keras.utils import to_categorical
 
 
 class sentiment_analysis_model:
-    sentiment_text = ['positive', 'negative', 'neutral']
+    sentiment_text = ['positive', 'negative', 'off-topic']
 
     def __init__(self, tokenizer, max_length, y_train=[0,1,2], epochs=10, batch_size=256, save=True,path:str=None):
         self.epochs = epochs
@@ -54,7 +54,7 @@ class sentiment_analysis_model:
         print(f"Accouracy: {self.accuracy}")
 
     def predict(self,texts,padded_sequences):
-        predictions = self.model.predict(padded_sequences)
+        predictions = self.model.predict(padded_sequences, verbose=0)
 
         result = []
 

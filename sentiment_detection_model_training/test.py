@@ -1,8 +1,7 @@
 import pandas as pd
-from random import shuffle
-from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from sentiment_analysis_model import sentiment_analysis_model
+from sentiment_detection_model_training.sentiment_tokenizer import SentimentTokenizer
 
 # READ XLSX
 df = pd.read_excel('CourtVerdicts.xlsx')
@@ -10,19 +9,18 @@ df = pd.read_excel('CourtVerdicts.xlsx')
 
 texts = [t for t in df['פסק-דין']]
 
-tokenizer = Tokenizer()
-tokenizer.fit_on_texts(texts)
-
+tokenizer = SentimentTokenizer(train_path='dataset/hebrew_sentiment-train.parquet',
+                               validation_path='dataset/hebrew_sentiment-test.parquet',
+                               verdict_df_path='CourtVerdicts.xlsx').tokenizer
 
 sequences = tokenizer.texts_to_sequences(texts)
 
-
-max_length = max([len(seq) for seq in sequences])
+max_length = 909
 
 padded_sequences = pad_sequences(sequences, maxlen=max_length, padding='post')
 
 model = sentiment_analysis_model(tokenizer=tokenizer, max_length=max_length, path='sentiment_analysis_model_weights.h5')
 
-result = model.predict(texts=texts, padded_sequences=padded_sequences)
+results = model.predict(texts=texts, padded_sequences=padded_sequences)
 
-print(result)
+print([sentiment_analysis_model.sentiment_text[result['sentiment']] for result in results])
